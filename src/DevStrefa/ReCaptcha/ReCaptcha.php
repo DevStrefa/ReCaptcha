@@ -43,14 +43,15 @@ class ReCaptcha
      * @throws Exception Exception is throw when secret key is empty
      */
     public function __construct($secretKey)
-    {
-        $this->secretKey = $secretKey;
-
+    {   
         //TODO: Check if there is some validation rule for secret key
-        if ($this->secretKey == '')
+        if (!isset($secretKey) || $secretKey == '')
         {
-            throw new Exception('Invalid Secret Key');
+            throw new \InvalidArgumentException('Invalid Secret Key');
         }
+        
+        $this->secretKey = $secretKey;
+        
     }
     
     /**
