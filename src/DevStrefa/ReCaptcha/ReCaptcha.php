@@ -1,55 +1,69 @@
-<?php namespace DevStrefa\ReCaptcha;
+<?php 
+
+namespace DevStrefa\ReCaptcha;
+
+use DevStrefa\ReCaptcha\Senders\SenderInterface;
 
 class ReCaptcha
 {
 
-    private $secretKey;
+    private $secret;
     private $sender;
-    private $userIp;
-    private $userResponse;
+    private $remoteIp;
+    private $response;
 
-    public function __construct(\DevStrefa\ReCaptcha\Senders\SenderInterface $sender, $secretKey)
+    public function __construct($secret, SenderInterface $sender = null)
     {
-
-        $this->sender = $sender;
-        $this->setSecretKey($secretKey);
-    }
-
-    public function getSecretKey()
-    {
-        return $this->secretKey;
-    }
-
-    public function setSecretKey($secretKey)
-    {
-
-        if ($this->getSecretKey() == '')
+        
+        if (empty($secret) || !is_string($secret))
         {
-            throw new \InvalidArgumentException('Secret Key Can\'t be empty');
+            throw new \InvalidArgumentException('Invalid value of secret key.');
         }
-
-        $this->secretKey = $secretKey;
+        
+        $this->secret=$secret;
+        
+        if (!isset($sender))
+        {
+           //TODO:resolve best sender method
+        }
+        else
+        {
+            $this->sender=$sender;
+        }
+        
     }
-
-    public function getUserIp()
+    
+    public function setResponse($response)
     {
-        return $this->userIp;
+        if (empty($response) || !is_string($response))
+        {
+            throw new \InvalidArgumentException('Invalid value for g-recaptcha-response');
+        }
+        
+        $this->response=$response;
+        return $this;
+        
     }
-
-    public function getUserResponse()
+    
+    public function setRemoteIp($remoteIp)
     {
-        return $this->userResponse;
-    }
-
-    public function setUserIp($userIp)
-    {
-        $this->userIp = $userIp;
+        if (!filter_var($remoteIp,FILTER_VALIDATE_IP))
+        {
+            throw new \InvalidArgumentException('Invalid IP address');
+        }
+        
+        $this->remoteIp=$remoteIp;
+        
         return $this;
     }
-
-    public function setUserResponse($userResponse)
+    
+    
+    public function verify()
     {
-        $this->userResponse = $userResponse;
-        return $this;
+        return $this->sender->send($this->secret,$this->response,$this->remoteIp);
     }
+    
+    
+    
+    
 }

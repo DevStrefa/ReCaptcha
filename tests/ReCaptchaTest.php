@@ -1,28 +1,76 @@
 <?php
 
-class ReCaptchaTest extends PHPUnit_Framework_TestCase
-{
+use DevStrefa\ReCaptcha\ReCaptcha;
    
+class ReCaptchaTest extends \PHPUnit_Framework_TestCase
+{
+    
     private $reCaptcha;
     
-    public function setUp()
+    public static function invalidKeysProvider()
     {
-        $this->reCaptcha=new \DevStrefa\ReCaptcha\ReCaptcha(new \DevStrefa\ReCaptcha\Senders\CurlSender(), 'test_secret_key');
+        return array(
+            array(''),
+            array(-10),
+            array(array()),
+            array(new \stdClass()),
+            array(false)
+        );
     }
     
-    public function testConstructorIncorrectSecretKey()
+    public static function invalidResponseProvider()
     {
-        $this->expectException(InvalidArgumentException::class);
-        
-        $sender=new \DevStrefa\ReCaptcha\Senders\CurlSender();
-        $reCaptchaTmp=new DevStrefa\ReCaptcha\ReCaptcha($sender, '');
+        return array(
+            array(''),
+            array(-10),
+            array(array()),
+            array(new \stdClass()),
+            array(false)
+        );
+    }
+    
+    public static function invalidIpProvider()
+    {
+        return array(
+            array(''),
+            array(-10),
+            array(array()),
+            array(new \stdClass()),
+            array(false),
+            array('127.0.'),
+            array('f3:3ad:das')
+        );
+    }
+    
+    
+    /**
+     * @dataProvider invalidKeysProvider
+     */
+    public function testInvalidSecretKeyInConstructor($key)
+    {
+        $this->expectException(InvalidArgumentException::class);                
+        $reCaptcha=new ReCaptcha($key);
         
     }
     
-    public function testGetSetSecretKey()
+    /**
+     * @dataProvider invalidResponseProvider
+     */
+    public function testInvalidResponseSet($response)
     {
-        $this->reCaptcha->setSecretKey('test_secret');
-        $this->assertEquals('test_secret',$this->reCaptcha->getSecretKey());
+        $this->expectException(InvalidArgumentException::class);                
+        $reCaptcha=new ReCaptcha('secret');
+        $reCaptcha->setResponse($response);
+    }
+    
+    /**
+     * @dataProvider invalidIpProvider
+     */
+    public function testInvalidIpSet($ipAddress)
+    {
+        $this->expectException(InvalidArgumentException::class);                
+        $reCaptcha=new ReCaptcha('secret');
+        $reCaptcha->setRemoteIp($ipAddress);
     }
     
 }
