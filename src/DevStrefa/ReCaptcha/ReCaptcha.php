@@ -4,6 +4,7 @@ namespace DevStrefa\ReCaptcha;
 
 use DevStrefa\ReCaptcha\Senders\SenderInterface;
 
+
 class ReCaptcha
 {
 
@@ -57,7 +58,10 @@ class ReCaptcha
         return $this;
     }
     
-    
+    /**
+     *
+     * @return Response Response Object
+     */
     public function verify()
     {
         return $this->sender->send($this->secret,$this->response,$this->remoteIp);
