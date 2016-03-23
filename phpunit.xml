@@ -6,11 +6,21 @@
          processIsolation="true"
          stopOnFailure="false"
          syntaxCheck="false"
+         
 >
     <testsuites>
         <testsuite name="ReCaptcha Library Tests">
             <directory>tests</directory>
         </testsuite>
-        
     </testsuites>
+    
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="TRUE" processUncoveredFilesFromWhitelist="TRUE">
+            <directory suffix=".php">src</directory>            
+            <exclude>
+                <directory suffix=".php">vendor</directory>                
+            </exclude>
+        </whitelist>
+    </filter>
+    
 </phpunit>

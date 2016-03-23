@@ -1,90 +1,55 @@
-<?php 
-/**
- * PHP ReCaptcha implementation
- * 
- * Main purpose of this library is develop an easy way to use ReCaptcha anti spam mechanism in PHP
- * Library use new way of validating user input according to official documentation of ReCaptcha V2.0
- * 
- * @author Cichy <d3ut3r@gmail.com>
- * @version 0.1.0
- */
+<?php namespace DevStrefa\ReCaptcha;
 
-namespace DevStrefa\ReCaptcha;
-
-/**
- * Main Class
- */
 class ReCaptcha
 {
 
-    /**
-     *
-     * @var string User Secret Key generated on google developer console
-     */
     private $secretKey;
-    /**
-     *
-     * @var string User Response string for captcha. 
-     */
+    private $sender;
+    private $userIp;
     private $userResponse;
-    
-    /**
-     *
-     * @var string Optional IP Address of user
-     */
-    private $ipAddress;
 
-    /**
-     * Constructor of main class 
-     * 
-     * You should pass here secretKey argument
-     * 
-     * @param string User Secret Key generated on google developer console
-     * @throws Exception Exception is throw when secret key is empty
-     */
-    public function __construct($secretKey)
-    {   
-        //TODO: Check if there is some validation rule for secret key
-        if (!isset($secretKey) || $secretKey == '')
+    public function __construct(\DevStrefa\ReCaptcha\Senders\SenderInterface $sender, $secretKey)
+    {
+
+        $this->sender = $sender;
+        $this->setSecretKey($secretKey);
+    }
+
+    public function getSecretKey()
+    {
+        return $this->secretKey;
+    }
+
+    public function setSecretKey($secretKey)
+    {
+
+        if ($this->getSecretKey() == '')
         {
-            throw new \InvalidArgumentException('Invalid Secret Key');
+            throw new \InvalidArgumentException('Secret Key Can\'t be empty');
         }
-        
+
         $this->secretKey = $secretKey;
-        
-    }
-    
-    /**
-     * This method set User Response for validation
-     *      
-     * @param string User Response (for example from $_POST table)
-     */
-    public function setUserResponse($response)
-    {
-        $this->userResponse = $response;
     }
 
-    /**
-     * 
-     * @param string User Ip Address
-     */
-    public function setUserIp($ipAddress)
+    public function getUserIp()
     {
-        $this->ipAddress = $ipAddress;
+        return $this->userIp;
     }
 
-    /**
-     * Verify User Response
-     * 
-     * In case that Captcha Isn't solve You can use GetResponse method to get more info about errors
-     *  
-     * @param \ReCaptcha\Senders\SenderInterface $sender
-     * @return boolean TRUE if captcha is solved FALSE in other case
-     */
-    public function verify(DevStrefa\ReCaptcha\Senders\SenderInterface $sender)
+    public function getUserResponse()
     {
-        
-        
-       
+        return $this->userResponse;
+    }
+
+    public function setUserIp($userIp)
+    {
+        $this->userIp = $userIp;
+        return $this;
+    }
+
+    public function setUserResponse($userResponse)
+    {
+        $this->userResponse = $userResponse;
+        return $this;
     }
 }
