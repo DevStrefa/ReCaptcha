@@ -89,4 +89,14 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(get_class($reCaptcha), $reCaptcha->setResponse('some_secret_string_response_token'));
     }
     
+    public function testValidResponseReturnedFromVerify()
+    {
+        $reCaptcha=new ReCaptcha('secret');
+        
+        $response=$reCaptcha->setResponse('test_response')->verify();
+        
+        $this->assertInstanceOf(DevStrefa\ReCaptcha\Response::class,$response);
+        
+    }
+    
 }

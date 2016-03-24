@@ -18,7 +18,8 @@
         <whitelist addUncoveredFilesFromWhitelist="TRUE" processUncoveredFilesFromWhitelist="TRUE">
             <directory suffix=".php">src</directory>            
             <exclude>
-                <directory suffix=".php">vendor</directory>                
+                <directory suffix=".php">vendor</directory>    
+                <file>src/DevStrefa/ReCaptcha/Senders/SenderInterface.php</file>            
             </exclude>
         </whitelist>
     </filter>
