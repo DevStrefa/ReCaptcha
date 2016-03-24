@@ -1,4 +1,4 @@
-## 0.1.1 (24.03.2016)
+## v0.1.1 (24.03.2016)
 
 #### Small Changes:
  * CHANGELOG since this release
@@ -10,6 +10,6 @@
  * Update phpunit.xml to exclude SenderInterface from Whitelist
 
 
-## 0.1.0 (24.03.2016)
+## v0.1.0 (24.03.2016)
 
 Initial release of library.
