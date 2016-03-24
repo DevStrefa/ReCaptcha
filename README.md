@@ -1,4 +1,4 @@
-# ReCaptcha 0.1.0
+# ReCaptcha 0.1.1
 
 Simple PHP Library, designed for verifications of Google reCaptcha. 
 
@@ -24,6 +24,10 @@ This code still is an early beta phase,  it's working for simple integration how
  * Documentation and How to use section
  * Deploy to packagist
  * Travis integration 
+
+## Changelog
+
+You can see Changelog for this project [here](https://github.com/DevStrefa/ReCaptcha/blob/master/CHANGELOG.md)
 
 ### License
 
