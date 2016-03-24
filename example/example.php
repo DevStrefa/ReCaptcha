@@ -6,7 +6,7 @@ if (isset($_POST['recaptchaTest']))
     try
     {
 
-        $reCaptcha = new \DevStrefa\ReCaptcha\ReCaptcha('6LfZnRsTAAAAAKOUxOccMH-zAuLX4va82KtXD01W', new DevStrefa\ReCaptcha\Senders\FgcSender());
+        $reCaptcha = new \DevStrefa\ReCaptcha\ReCaptcha('secret_key_here', new DevStrefa\ReCaptcha\Senders\FgcSender());
         
         $reCaptcha->setResponse(isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '');
         
