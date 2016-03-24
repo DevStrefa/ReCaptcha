@@ -1,16 +1,21 @@
 <?php
-/**
- * File Get Contents Sender
- * 
- * This is very simple implementation of SenderInterface it's using php file_get_contents function to get response from reCaptcha endpoint
- * @author Cichy <d3ut3r@gmail.com>  
- */
 namespace DevStrefa\ReCaptcha\Senders;
 
 use DevStrefa\ReCaptcha\Response;
 
+/**
+ * File Get Contents Sender
+ * 
+ * This is very simple implementation of SenderInterface it's using php file_get_contents function to get response from reCaptcha endpoint
+ * 
+ * @author Cichy <d3ut3r@gmail.com>  
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 class FgcSender implements \DevStrefa\ReCaptcha\Senders\SenderInterface
 {
+    /**
+     * Contains url to google verify service
+     */
     const ENDPOINT='https://www.google.com/recaptcha/api/siteverify';
 
     

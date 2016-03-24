@@ -2,11 +2,11 @@
 namespace DevStrefa\ReCaptcha;
 
 /**
- * Response Object
+ * Response class is used to store response from google reCaptcha service. 
  * 
- * Object returned after sending verify request to google service
+ * @author Cichy <d3ut3r@gmail.com>
+ * @license https://opensource.org/licenses/MIT MIT
  */
-
 class Response
 {
     /**
@@ -85,7 +85,7 @@ class Response
     
     /**
      * 
-     * @return bollean Result of challenge
+     * @return boolean Result of challenge
      */
     public function isSuccess()
     {
