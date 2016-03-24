@@ -13,15 +13,7 @@ class FgcSender implements \DevStrefa\ReCaptcha\Senders\SenderInterface
 {
     const ENDPOINT='https://www.google.com/recaptcha/api/siteverify';
 
-    public function __construct()
-    {
-        //check for allow_url_fopen
-        if (!ini_get('allow_url_fopen'))
-        {
-            throw new \RuntimeException('You can\'t Use FgcSender due to disabled allow_url_fopen option in your php configuration');
-        }
-    }
-
+    
     /**
      * Make request and return Response Object
      * 
