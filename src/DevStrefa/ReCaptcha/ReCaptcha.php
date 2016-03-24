@@ -24,8 +24,8 @@ class ReCaptcha
         $this->secret=$secret;
         
         if (!isset($sender))
-        {
-           //TODO:resolve best sender method
+        {          
+           $this->sender=new Senders\FgcSender();           
         }
         else
         {

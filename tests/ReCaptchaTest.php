@@ -10,22 +10,26 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     public static function invalidKeysProvider()
     {
         return array(
+            
             array(''),
             array(-10),
             array(array()),
             array(new \stdClass()),
             array(false)
+            
         );
     }
     
     public static function invalidResponseProvider()
     {
         return array(
+            
             array(''),
             array(-10),
             array(array()),
             array(new \stdClass()),
             array(false)
+            
         );
     }
     
@@ -59,7 +63,7 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     public function testInvalidResponseSet($response)
     {
         $this->expectException(InvalidArgumentException::class);                
-        $reCaptcha=new ReCaptcha('secret');
+        $reCaptcha=new ReCaptcha('secret', new \DevStrefa\ReCaptcha\Senders\FgcSender());
         $reCaptcha->setResponse($response);
     }
     
