@@ -40,9 +40,9 @@ class Response
     
     public function __construct($jsonData)
     {
-        $responseObject=json_decode($jsonData, FALSE, 3);
+        $responseObject=json_decode((string)$jsonData, FALSE, 3);
 
-        if (FALSE === $responseObject)
+        if (FALSE === is_object($responseObject))
         {
             throw new \RuntimeException('Invalid format of response (it\'s not JSON as expected)');
         }
@@ -80,7 +80,7 @@ class Response
      */
     public function getErrors()
     {
-        return $this->errors;
+        return (array)$this->errors;
     }
     
     /**
