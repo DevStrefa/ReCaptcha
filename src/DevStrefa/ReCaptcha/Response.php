@@ -58,7 +58,7 @@ class Response
     }
     
     /**
-     * 
+     * Return PHP DateTIme object of challenge timestamp from google response, if this response do not contain challenge_ts field it will return current date and time
      * @return \DateTime Date object of challenge timeStamp
      */
     public function getDate()
