@@ -1,6 +1,6 @@
 <?php
 
-use DevStrefa\ReCaptcha\Response;
+use \DevStrefa\ReCaptcha\Response;
    
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,7 +48,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function testGetDateReturnDateTimeObject($jsonData)
     {
         $response=new Response($jsonData);
-        $this->assertInstanceOf(\DateTime::class, $response->getDate());
+        $class=new \DateTime();
+        $this->assertInstanceOf(get_class($class), $response->getDate());
         
     }
     
