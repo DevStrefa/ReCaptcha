@@ -1,6 +1,6 @@
 <?php
 
-use DevStrefa\ReCaptcha\ReCaptcha;
+use \DevStrefa\ReCaptcha\ReCaptcha;
    
 class ReCaptchaTest extends \PHPUnit_Framework_TestCase
 {
@@ -49,30 +49,31 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @dataProvider invalidKeysProvider
+     * @expectedException InvalidArgumentException
      */
     public function testInvalidSecretKeyInConstructor($key)
     {
-        $this->expectException(InvalidArgumentException::class);                
+        
         $reCaptcha=new ReCaptcha($key);
         
     }
     
     /**
      * @dataProvider invalidResponseProvider
+     * @expectedException InvalidArgumentException 
      */
     public function testInvalidResponseSet($response)
-    {
-        $this->expectException(InvalidArgumentException::class);                
+    {                  
         $reCaptcha=new ReCaptcha('secret', new \DevStrefa\ReCaptcha\Senders\FgcSender());
         $reCaptcha->setResponse($response);
     }
     
     /**
      * @dataProvider invalidIpProvider
+     * @expectedException InvalidArgumentException
      */
     public function testInvalidIpSet($ipAddress)
-    {
-        $this->expectException(InvalidArgumentException::class);                
+    {     
         $reCaptcha=new ReCaptcha('secret');
         $reCaptcha->setRemoteIp($ipAddress);
     }
@@ -80,13 +81,13 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     public function testValidIpSet()
     {
         $reCaptcha=new ReCaptcha('secret');        
-        $this->assertInstanceOf(ReCaptcha::class, $reCaptcha->setRemoteIp('127.0.0.1'));
+        $this->assertInstanceOf(get_class($reCaptcha), $reCaptcha->setRemoteIp('127.0.0.1'));
     }
     
     public function testValidResponseSet()
     {
         $reCaptcha=new ReCaptcha('secret');        
-        $this->assertInstanceOf(ReCaptcha::class, $reCaptcha->setResponse('some_secret_string_response_token'));
+        $this->assertInstanceOf(get_class($reCaptcha), $reCaptcha->setResponse('some_secret_string_response_token'));
     }
     
     public function testValidResponseReturnedFromVerify()
@@ -95,7 +96,7 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
         
         $response=$reCaptcha->setResponse('test_response')->verify();
         
-        $this->assertInstanceOf(DevStrefa\ReCaptcha\Response::class,$response);
+        $this->assertInstanceOf(get_class($response),$response);
         
     }
     
