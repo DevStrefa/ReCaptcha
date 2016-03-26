@@ -1,4 +1,5 @@
 # ReCaptcha 1.0.0
+[![Build Status](https://travis-ci.org/DevStrefa/ReCaptcha.svg?branch=master)](https://travis-ci.org/DevStrefa/ReCaptcha)
 
 Simple PHP Library, designed for verifications of Google reCaptcha. 
 
