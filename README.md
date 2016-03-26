@@ -8,7 +8,16 @@ Simple answer for this question is "I really don't know" :)  but seriously, it i
 
 ### How to install
 
-[[This section will be updated after publishing package on packagist]]
+Library is compatible with [composer](https://getcomposer.org/) so You can install it by adding:
+```code
+"require": {
+        "devstrefa/recaptcha": "1.0.x-dev"
+    }
+```
+
+to Your composer.json file
+
+You can also download zip file and include all necessery files by yourself
 
 ### How to use package
 
