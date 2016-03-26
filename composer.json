@@ -20,5 +20,11 @@
         
     "autoload": {
         "psr-4": {"DevStrefa\\": "src/DevStrefa"}
+    },
+    
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
