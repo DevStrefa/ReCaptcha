@@ -2,11 +2,12 @@
 namespace DevStrefa\ReCaptcha;
 
 /**
- * Response Object
+ * Response class is used to store response from google reCaptcha service. 
  * 
- * Object returned after sending verify request to google service
+ * @author Cichy <d3ut3r@gmail.com>
+ * @license https://opensource.org/licenses/MIT MIT
+ * @version 1.0.0
  */
-
 class Response
 {
     /**
@@ -40,9 +41,9 @@ class Response
     
     public function __construct($jsonData)
     {
-        $responseObject=json_decode($jsonData, FALSE, 3);
+        $responseObject=json_decode((string)$jsonData, FALSE, 3);
 
-        if (FALSE === $responseObject)
+        if (FALSE === is_object($responseObject))
         {
             throw new \RuntimeException('Invalid format of response (it\'s not JSON as expected)');
         }
@@ -57,7 +58,7 @@ class Response
     }
     
     /**
-     * 
+     * Return PHP DateTIme object of challenge timestamp from google response, if this response do not contain challenge_ts field it will return current date and time
      * @return \DateTime Date object of challenge timeStamp
      */
     public function getDate()
@@ -80,12 +81,12 @@ class Response
      */
     public function getErrors()
     {
-        return $this->errors;
+        return (array)$this->errors;
     }
     
     /**
      * 
-     * @return bollean Result of challenge
+     * @return boolean Result of challenge
      */
     public function isSuccess()
     {

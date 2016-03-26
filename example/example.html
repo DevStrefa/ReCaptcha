@@ -1,13 +1,15 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <title>DevStrefa/reCaptcha Example Code</title>
         <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body>
         <form action="example.php" method="post">
-            
-            <div class="g-recaptcha" data-sitekey="{public_key_here}"></div>
-            <input type="submit" name="recaptchaTest" value="Send">
-                        
+            <!-- IMPORTANT: remember to change default key to your own -->
+            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+            <input type="submit" name="recaptchaTest" value="Send">            
         </form>
     </body>
 </html>

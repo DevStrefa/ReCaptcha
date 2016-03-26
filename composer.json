@@ -1,4 +1,23 @@
 {
+    "name": "devstrefa/recaptcha",
+    "type": "library",
+    "description": "PHP Library to verify google reCaptcha challenge",
+    "keywords": ["reCaptcha","google captcha","spam"],
+    "homepage": "https://github.com/google/recaptcha/",
+    "license": "MIT",
+    "authors":[
+        {
+            "name": "Cichy",
+            "email":"d3ut3r@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"        
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.5.*"      
+    },
+        
     "autoload": {
         "psr-4": {"DevStrefa\\": "src/DevStrefa"}
     }

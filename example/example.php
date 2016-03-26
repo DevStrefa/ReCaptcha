@@ -1,16 +1,21 @@
 <?php
 require_once '../vendor/autoload.php';
 
+use \DevStrefa\ReCaptcha\ReCaptcha;
+use \DevStrefa\ReCaptcha\Senders\FgcSender;
+
+
 if (isset($_POST['recaptchaTest']))
 {
     try
     {
-
-        $reCaptcha = new \DevStrefa\ReCaptcha\ReCaptcha('secret_key_here', new DevStrefa\ReCaptcha\Senders\FgcSender());
         
-        $reCaptcha->setResponse(isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '');
+        //Remember to change default key to your own (this key is test key and it's always return valid captcha response        
+        $reCaptcha = new ReCaptcha('6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe', new FgcSender());
         
+        $reCaptcha->setResponse(isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'].'aaa' : '');
         $response=$reCaptcha->verify();
+        
         if ($response->isSuccess())
         {
             echo 'Captcha OK';

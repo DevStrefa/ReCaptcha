@@ -80,13 +80,13 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     public function testValidIpSet()
     {
         $reCaptcha=new ReCaptcha('secret');        
-        $this->assertInstanceOf(get_class($reCaptcha), $reCaptcha->setRemoteIp('127.0.0.1'));
+        $this->assertInstanceOf(ReCaptcha::class, $reCaptcha->setRemoteIp('127.0.0.1'));
     }
     
     public function testValidResponseSet()
     {
         $reCaptcha=new ReCaptcha('secret');        
-        $this->assertInstanceOf(get_class($reCaptcha), $reCaptcha->setResponse('some_secret_string_response_token'));
+        $this->assertInstanceOf(ReCaptcha::class, $reCaptcha->setResponse('some_secret_string_response_token'));
     }
     
     public function testValidResponseReturnedFromVerify()
