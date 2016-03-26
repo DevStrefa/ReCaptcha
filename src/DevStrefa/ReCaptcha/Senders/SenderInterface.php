@@ -7,6 +7,7 @@ namespace DevStrefa\ReCaptcha\Senders;
  * 
  * @author Cichy <d3ut3r@gmail.com>
  * @license https://opensource.org/licenses/MIT MIT
+ * @version 1.0.0
  */
 interface SenderInterface
 {
