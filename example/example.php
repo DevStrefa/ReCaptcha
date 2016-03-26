@@ -2,7 +2,7 @@
 require_once '../vendor/autoload.php';
 
 use \DevStrefa\ReCaptcha\ReCaptcha;
-use DevStrefa\ReCaptcha\Senders\FgcSender;
+use \DevStrefa\ReCaptcha\Senders\FgcSender;
 
 
 if (isset($_POST['recaptchaTest']))
