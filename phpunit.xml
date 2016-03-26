@@ -1,4 +1,4 @@
-<phpunit bootstrap="vendor/autoload.php"
+<phpunit bootstrap="./vendor/autoload.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -10,16 +10,16 @@
 >
     <testsuites>
         <testsuite name="ReCaptcha Library Tests">
-            <directory>tests</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="TRUE" processUncoveredFilesFromWhitelist="TRUE">
-            <directory suffix=".php">src</directory>            
+            <directory suffix=".php">./src</directory>            
             <exclude>
                 <directory suffix=".php">vendor</directory>    
-                <file>src/DevStrefa/ReCaptcha/Senders/SenderInterface.php</file>            
+                <file>./src/DevStrefa/ReCaptcha/Senders/SenderInterface.php</file>            
             </exclude>
         </whitelist>
     </filter>
